@@ -1,91 +1,219 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Mastery Academy</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Mastery Academy — Learn AI in Your Language</title>
+  <meta name="description" content="Multilingual AI courses with short videos, podcasts, and projects. Start free; upgrade anytime.">
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
-    header { background: #111; color: #fff; padding: 1rem; text-align: center; }
-    nav a { color: #fff; margin: 0 10px; text-decoration: none; }
-    .hero { text-align: center; padding: 3rem 1rem; background: #eee; }
-    .btn { background: #007BFF; color: #fff; padding: 10px 20px; border: none; cursor: pointer; }
-    footer { background: #111; color: #fff; text-align: center; padding: 1rem; margin-top: 2rem; }
-    .pricing { display: flex; justify-content: center; gap: 2rem; padding: 2rem; }
-    .card { border: 1px solid #ccc; border-radius: 8px; padding: 1rem; width: 200px; text-align: center; }
+    :root{ --bg:#061321; --bg-soft:#0a1c33; --card:#0f2744; --text:#f5fbff; --muted:#b7c7d9; --brand:#00E5FF; --brand2:#4F46E5; --border:rgba(255,255,255,.12); --shadow:0 10px 30px rgba(0,0,0,.35) }
+    *{box-sizing:border-box} html,body{margin:0} body{font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--text);line-height:1.5}
+    a{color:inherit;text-decoration:none} img{max-width:100%;display:block}
+    .container{max-width:1120px;margin:0 auto;padding:24px}
+    header{position:sticky;top:0;backdrop-filter:saturate(140%) blur(6px);background:#061321CC;border-bottom:1px solid var(--border);z-index:10}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800}
+    .links{display:flex;gap:16px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:14px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;font-weight:600;border:0;cursor:pointer}
+    .btn.secondary{background:transparent;border:1px solid var(--border);color:var(--text)}
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center;padding:48px 0}
+    .title{font-size:clamp(28px,4.4vw,56px);line-height:1.05;margin:0 0 10px}
+    .subtitle{color:var(--muted);font-size:clamp(16px,1.6vw,20px)}
+    .panel{background:var(--card);border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow)}
+    section{padding:48px 0} h2{font-size:clamp(22px,3vw,36px);margin:0 0 14px} p.lead{color:var(--muted);font-size:18px;margin:0 0 20px}
+    .grid{display:grid;gap:18px} .grid.c3{grid-template-columns:repeat(3,1fr)} .grid.c2{grid-template-columns:repeat(2,1fr)}
+    @media (max-width:900px){ .hero{grid-template-columns:1fr} .grid.c3,.grid.c2{grid-template-columns:1fr} }
+    .course-card{padding:18px;border-radius:18px;background:linear-gradient(180deg,var(--bg-soft),var(--card));border:1px solid var(--border)} .course-card h3{margin:10px 0;font-size:18px}
+    .course-card .meta{display:flex;gap:10px;color:var(--muted);font-size:13px}
+    .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:18px} .price-card{padding:22px;border-radius:22px;background:var(--card);border:1px solid var(--border);display:flex;flex-direction:column;gap:12px} .price{font-size:32px;font-weight:800} .foot{display:flex;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:13px}
+    footer{padding:32px 0;color:var(--muted)}
     /* Modal */
-    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; }
-    .modal-content { background: #fff; padding: 2rem; border-radius: 8px; width: 300px; }
-    .close { float: right; cursor: pointer; }
+    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);backdrop-filter:blur(2px);display:none;align-items:center;justify-content:center;z-index:9999}
+    .modal{width:min(520px,92vw);background:var(--card);color:var(--text);border:1px solid var(--border);border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.45);overflow:hidden}
+    .modal header{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff}
+    .modal .x{background:transparent;border:0;color:#fff;font-size:22px;cursor:pointer}
+    .modal .body{padding:18px;display:grid;gap:12px}
+    .field{display:grid;gap:6px} .field input{padding:12px 12px;border-radius:12px;border:1px solid var(--border);background:var(--bg-soft);color:var(--text)}
+    .row{display:flex;gap:10px;flex-wrap:wrap}
+    .modal .actions{display:flex;gap:10px;justify-content:flex-end;padding:0 18px 18px}
+    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border:0}
+    .btn.ghost{background:transparent;border:1px solid var(--border);color:var(--text)}
+    .success{display:none;padding:18px}
   </style>
 </head>
 <body>
-  <header>
-    <h1>AI Mastery Academy</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="course.html">Courses</a>
-    </nav>
+  <header aria-label="Primary">
+    <div class="container nav">
+      <div class="brand" aria-label="Brand">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00E5FF"/><stop offset="100%" stop-color="#4F46E5"/></linearGradient></defs>
+          <rect x="2" y="2" width="20" height="20" rx="6" fill="url(#g1)"/><path d="M7 12h10M7 16h6M7 8h10" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span>AI MASTERY ACADEMY</span>
+      </div>
+      <nav class="links" aria-label="Site">
+        <a href="#courses">Courses</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a href="#courses" class="btn">Start Learning</a>
+    </div>
   </header>
-  <section class="hero">
-    <h2>Master AI. Unlock Your Future.</h2>
-    <p>Join thousands learning AI in multiple languages.</p>
-    <a href="course.html"><button class="btn">Start Learning</button></a>
-  </section>
-  <section class="pricing">
-    <div class="card">
-      <h3>Free</h3>
-      <p>$0/month</p>
-      <a href="course.html"><button class="btn">Get Started</button></a>
+
+  <main id="main" class="container">
+    <section class="hero">
+      <div>
+        <h1 class="title">Learn AI in your language. Build real projects. Get certified.</h1>
+        <p class="subtitle">Short videos, podcasts, and hands‑on projects. Start for free, upgrade anytime.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+          <a href="#courses" class="btn" id="start-learning">Start Free</a>
+          <a href="#pricing" class="btn secondary">See Pricing</a>
+        </div>
+      </div>
+      <div class="panel" aria-label="Media preview" style="padding:12px">
+        <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:16/9;background:#0e0f1a;border:1px solid var(--border)">
+          <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?q=80&w=1200&auto=format&fit=crop" alt="AI learning preview" loading="lazy"/>
+          <span style="position:absolute;bottom:12px;left:12px;background:rgba(0,0,0,.55);padding:8px 10px;border-radius:999px;font-size:12px">▶︎ 00:45 teaser</span>
+        </div>
+        <div style="padding:8px 4px"><p class="lead">A 45‑second tour: how we make complex topics simple and practical.</p></div>
+      </div>
+    </section>
+
+    <section id="courses">
+      <h2>Popular paths</h2>
+      <p class="lead">Choose a track. Free intro lessons on every path.</p>
+      <div class="grid c3">
+        <article class="course-card">
+          <h3>AI for Beginners</h3>
+          <div class="meta"><span>6h • Video</span><span>•</span><span>Certificate</span></div>
+          <p>Foundations, prompting, and your first AI workflow.</p>
+          <a href="course.html?id=beginners" class="btn">Start Free</a>
+        </article>
+        <article class="course-card">
+          <h3>ChatGPT & Generative AI Mastery</h3>
+          <div class="meta"><span>8h • Video/Podcast</span><span>•</span><span>Templates</span></div>
+          <p>Automate work and create content at scale.</p>
+          <a href="course.html?id=genai" class="btn">Start Free</a>
+        </article>
+        <article class="course-card">
+          <h3>AI for Business & Startups</h3>
+          <div class="meta"><span>7h • Video</span><span>•</span><span>Case studies</span></div>
+          <p>Design copilots, automate workflows, improve KPIs.</p>
+          <a href="course.html?id=business" class="btn">Start Free</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <h2>Simple pricing</h2>
+      <p class="lead">Start free. Upgrade when you’re ready. Cancel anytime.</p>
+      <div class="pricing">
+        <div class="price-card"><h3>Free</h3><div class="price">$0</div><ul class="foot"><li>Intro modules</li><li>Community access</li><li>Monthly live AMA</li></ul><a href="course.html?id=beginners" class="btn">Join Free</a></div>
+        <div class="price-card" style="border:2px solid var(--brand2)"><h3>Pro</h3><div class="price">$19<span style="font-size:14px;color:var(--muted)">/mo</span></div><ul class="foot"><li>All courses & paths</li><li>Certificates</li><li>Project reviews</li></ul><a class="btn" id="start-pro">Start Pro</a></div>
+        <div class="price-card"><h3>Teams</h3><div class="price">$99<span style="font-size:14px;color:var(--muted)">/team/mo</span></div><ul class="foot"><li>10 seats</li><li>Manager dashboard</li><li>Custom onboarding</li></ul><a href="mailto:cherryfran84@yahoo.com?subject=Teams%20plan%20inquiry" class="btn">Contact Sales</a></div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2>FAQ</h2>
+      <div class="grid c2">
+        <div class="panel" style="padding:16px"><strong>Do I get a certificate?</strong><p class="lead">Yes, certificates are included with the Pro plan.</p></div>
+        <div class="panel" style="padding:16px"><strong>Which languages?</strong><p class="lead">English, Spanish, French, Hindi, Chinese (Simplified), Arabic.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <div>&copy; <span id="year"></span> AI Mastery Academy</div>
+      <div>✨ Built to help you learn AI, consistently.</div>
     </div>
-    <div class="card">
-      <h3>Pro</h3>
-      <p>$19/month</p>
-      <button class="btn" id="startProBtn">Start Pro</button>
-    </div>
-  </section>
-  <footer>
-    <p>&copy; 2025 AI Mastery Academy</p>
   </footer>
 
-  <!-- Modal -->
-  <div class="modal" id="checkoutModal">
-    <div class="modal-content">
-      <span class="close" id="closeModal">&times;</span>
-      <h2>Upgrade to Pro</h2>
-      <form id="checkoutForm">
-        <label>Name</label><br>
-        <input type="text" id="name" required><br><br>
-        <label>Email</label><br>
-        <input type="email" id="email" required><br><br>
-        <label>Coupon (optional)</label><br>
-        <input type="text" id="coupon"><br><br>
-        <button type="submit" class="btn">Request Upgrade</button>
-      </form>
+  <!-- Pro Checkout Modal -->
+  <div class="modal-overlay" id="proModal" aria-hidden="true" role="dialog" aria-labelledby="proTitle">
+    <div class="modal" role="document">
+      <header>
+        <h3 id="proTitle">Upgrade to Pro — $19/month</h3>
+        <button class="x" aria-label="Close">×</button>
+      </header>
+      <div class="body">
+        <div class="field">
+          <label for="pro-name">Full name</label>
+          <input id="pro-name" type="text" placeholder="Your name" required>
+        </div>
+        <div class="field">
+          <label for="pro-email">Email</label>
+          <input id="pro-email" type="email" placeholder="you@example.com" required>
+        </div>
+        <div class="row">
+          <div class="field" style="flex:1 1 180px">
+            <label for="pro-plan">Plan</label>
+            <input id="pro-plan" type="text" value="Pro — $19/month" disabled>
+          </div>
+          <div class="field" style="flex:1 1 180px">
+            <label for="pro-coupon">Coupon (optional)</label>
+            <input id="pro-coupon" type="text" placeholder="e.g., SAVE10">
+          </div>
+        </div>
+      </div>
+      <div class="actions">
+        <button class="btn ghost" data-close>Cancel</button>
+        <button class="btn primary" id="pro-submit">Request Upgrade</button>
+      </div>
+      <div class="success" id="pro-success" style="display:none;padding:18px"><div>✅ Request prepared. Please send the email from your mail app.</div></div>
     </div>
   </div>
 
   <script>
-    const modal = document.getElementById("checkoutModal");
-    const btn = document.getElementById("startProBtn");
-    const close = document.getElementById("closeModal");
-    const form = document.getElementById("checkoutForm");
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    btn.onclick = () => modal.style.display = "flex";
-    close.onclick = () => modal.style.display = "none";
-    window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; };
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+      const href=a.getAttribute('href'); if(href && href.startsWith('#')){ e.preventDefault(); const el=document.querySelector(href); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }
+    }));
 
-    form.onsubmit = (e) => {
-      e.preventDefault();
-      const name = document.getElementById("name").value;
-      const email = document.getElementById("email").value;
-      const coupon = document.getElementById("coupon").value;
-      const subject = encodeURIComponent("Pro Plan Request");
-      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCoupon: ${coupon}`);
-      window.location.href = `mailto:cherryfran84@yahoo.com?subject=${subject}&body=${body}`;
-      modal.style.display = "none";
-      alert("Your request has been sent!");
-    };
+    // Start Pro modal
+    (function(){
+      const CONTACT = 'cherryfran84@yahoo.com';
+      const modal = document.getElementById('proModal');
+      const btnSubmit = document.getElementById('pro-submit');
+      const closeEls = modal.querySelectorAll('.x,[data-close]');
+      const nameEl = document.getElementById('pro-name');
+      const emailEl = document.getElementById('pro-email');
+      const couponEl = document.getElementById('pro-coupon');
+      const successEl = document.getElementById('pro-success');
+
+      function open(){ modal.style.display='flex'; modal.setAttribute('aria-hidden','false'); successEl.style.display='none'; nameEl.focus(); }
+      function close(){ modal.style.display='none'; modal.setAttribute('aria-hidden','true'); }
+      closeEls.forEach(el => el.addEventListener('click', close));
+      modal.addEventListener('click', (e)=>{ if(e.target === modal) close(); });
+      document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') close(); });
+
+      const proBtn = document.getElementById('start-pro') || document.querySelector('#pricing .price-card:nth-of-type(2) a');
+      if(proBtn){
+        proBtn.addEventListener('click', (e) => { e.preventDefault(); open(); });
+        proBtn.removeAttribute('href'); proBtn.setAttribute('role','button');
+      }
+
+      btnSubmit.addEventListener('click', () => {
+        const name = nameEl.value.trim();
+        const email = emailEl.value.trim();
+        const coupon = couponEl.value.trim();
+        if(!name || !email){ alert('Please enter your name and email.'); return; }
+        const subject = encodeURIComponent('Pro upgrade request — AI Mastery Academy');
+        const body = encodeURIComponent(
+          'Please upgrade me to Pro ($19/month).\n\n' +
+          'Name: ' + name + '\n' +
+          'Email: ' + email + '\n' +
+          'Coupon: ' + (coupon || '—') + '\n\n' +
+          'Site: ' + location.href + '\n'
+        );
+        window.open('mailto:' + CONTACT + '?subject=' + subject + '&body=' + body, '_blank');
+        successEl.style.display = 'block';
+        setTimeout(close, 4000);
+      });
+    })();
   </script>
 </body>
 </html>
