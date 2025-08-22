@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="meta.title">AI Mastery Academy — Learn AI in Your Language</title>
+  <meta name="description" data-i18n="meta.description" content="A multilingual AI academy with short videos, podcasts, and hands‑on projects. Start free. Become job‑ready."/>
+  <meta name="theme-color" content="#0A2540" />
+  <meta name="color-scheme" content="dark light" />
+  <link rel="icon" href="assets/favicon.svg" />
+  <style>
+    :root{
+      --bg:#061321; --bg-soft:#0a1c33; --card:#0f2744; --text:#f5fbff; --muted:#b7c7d9;
+      --brand:#00E5FF; --brand2:#4F46E5; --border:rgba(255,255,255,.12); --shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+    @media (prefers-color-scheme: light){
+      :root{ --bg:#f6fbff; --bg-soft:#ffffff; --card:#ffffff; --text:#0a2540; --muted:#3b5b7a; --border:rgba(10,37,64,.12); --shadow:0 8px 24px rgba(16,24,40,.08); }
+    }
+    *{box-sizing:border-box} html,body{margin:0;height:100%} body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:var(--text);line-height:1.5}
+    a{color:inherit;text-decoration:none} img{max-width:100%;display:block}
+    .container{max-width:1120px;margin:0 auto;padding:24px}
+    header{position:sticky;top:0;backdrop-filter:saturate(140%) blur(6px);background:color-mix(in srgb, var(--bg) 80%, transparent);border-bottom:1px solid var(--border);z-index:10}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800}
+    .links{display:flex;gap:16px;flex-wrap:wrap}
+    .lang{appearance:none;background:var(--card);border:1px solid var(--border);color:var(--text);padding:10px 12px;border-radius:12px}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:12px 18px;border-radius:14px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;font-weight:600;box-shadow:var(--shadow);border:0;cursor:pointer}
+    .btn.secondary{background:transparent;border:1px solid var(--border);color:var(--text)}
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center;padding:48px 0}
+    .title{font-size:clamp(28px,4.4vw,56px);line-height:1.05;margin:0 0 10px}
+    .subtitle{color:var(--muted);font-size:clamp(16px,1.6vw,20px)}
+    .badges{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
+    .badge{padding:8px 12px;border-radius:999px;background:var(--card);border:1px solid var(--border);font-size:12px;color:var(--muted)}
+    .panel{background:var(--card);border:1px solid var(--border);border-radius:22px;box-shadow:var(--shadow)}
+    .grid{display:grid;gap:18px}
+    .grid.c3{grid-template-columns:repeat(3,1fr)} .grid.c2{grid-template-columns:repeat(2,1fr)}
+    @media (max-width:900px){ .hero{grid-template-columns:1fr} .grid.c3,.grid.c2{grid-template-columns:1fr} }
+    section{padding:48px 0} h2{font-size:clamp(22px,3vw,36px);margin:0 0 14px} p.lead{color:var(--muted);font-size:18px;margin:0 0 20px}
+    .course-card{padding:18px;border-radius:18px;background:linear-gradient(180deg,var(--bg-soft),var(--card));border:1px solid var(--border)} .course-card h3{margin:10px 0;font-size:18px}
+    .course-card .meta{display:flex;gap:10px;color:var(--muted);font-size:13px}
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px} .step{padding:16px;border-radius:16px;background:var(--card);border:1px solid var(--border)} .step .n{display:inline-flex;width:32px;height:32px;align-items:center;justify-content:center;border-radius:50%;background:var(--brand2);font-weight:700}
+    @media (max-width:1040px){ .steps{grid-template-columns:1fr 1fr} } @media (max-width:640px){ .steps{grid-template-columns:1fr} }
+    .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:18px} .price-card{padding:22px;border-radius:22px;background:var(--card);border:1px solid var(--border);display:flex;flex-direction:column;gap:12px} .price{font-size:32px;font-weight:800} .foot{display:flex;gap:8px;flex-wrap:wrap;color:var(--muted);font-size:13px}
+    .testimonial{display:flex;gap:14px;align-items:center;padding:16px;border-radius:16px;background:var(--card);border:1px solid var(--border)} .avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--brand2))}
+    .faq details{background:var(--card);border:1px solid var(--border);border-radius:14px;margin-bottom:10px} .faq summary{cursor:pointer;padding:14px 16px;font-weight:600} .faq .a{padding:0 16px 14px;color:var(--muted)}
+    footer{padding:32px 0;color:var(--muted)} [dir="rtl"]{direction:rtl} [dir="rtl"] .links{flex-direction:row-reverse}
+    .aima-bot{ position:fixed; right:18px; bottom:18px; width:320px; max-width:88vw; background:var(--card); color:var(--text); border:1px solid var(--border); border-radius:16px; box-shadow:var(--shadow); overflow:hidden; display:none; }
+    .aima-bot header{ background:linear-gradient(135deg,var(--brand),var(--brand2)); color:#fff; padding:12px 14px; display:flex; align-items:center; justify-content:space-between; }
+    .aima-bot .body{ padding:12px; max-height:48vh; overflow:auto; }
+    .aima-bot .message{ background:var(--bg-soft); border:1px solid var(--border); padding:10px 12px; border-radius:12px; margin:8px 0; white-space:pre-line; }
+    .aima-bot .input{ display:flex; gap:8px; padding:12px; border-top:1px solid var(--border); }
+    .aima-bot .input input{ flex:1; padding:10px 12px; border-radius:10px; border:1px solid var(--border); background:var(--bg-soft); color:var(--text); }
+    .aima-bot-launch{ position:fixed; right:18px; bottom:18px; width:54px; height:54px; border-radius:50%; background:linear-gradient(135deg,var(--brand),var(--brand2)); border:0; color:#fff; font-weight:800; box-shadow:var(--shadow); cursor:pointer; }
+  </style>
+</head>
+<body>
+  <header aria-label="Primary">
+    <div class="container nav">
+      <div class="brand" aria-label="Brand">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00E5FF"/><stop offset="100%" stop-color="#4F46E5"/></linearGradient></defs>
+          <rect x="2" y="2" width="20" height="20" rx="6" fill="url(#g1)"/><path d="M7 12h10M7 16h6M7 8h10" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <span>AI MASTERY ACADEMY</span>
+      </div>
+      <nav class="links" aria-label="Site">
+        <a href="#courses" data-i18n="nav.courses">Courses</a>
+        <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
+        <a href="#community" data-i18n="nav.community">Community</a>
+        <a href="#faq" data-i18n="nav.faq">FAQ</a>
+      </nav>
+      <div style="display:flex;align-items:center;gap:10px">
+        <select id="lang" class="lang" aria-label="Language selector">
+          <option value="en">English</option><option value="es">Español</option><option value="fr">Français</option>
+          <option value="hi">हिन्दी</option><option value="zh">中文 (简体)</option><option value="ar">العربية</option>
+        </select>
+        <a href="#signup" class="btn" data-i18n="nav.cta">Join Free</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="container">
+    <section class="hero">
+      <div>
+        <h1 class="title" data-i18n="hero.title">Learn AI in your language. Build real projects. Get certified.</h1>
+        <p class="subtitle" data-i18n="hero.subtitle">A project‑first AI academy with short videos, podcasts, and interactive labs. Start for free, upgrade anytime.</p>
+        <div class="badges">
+          <span class="badge" data-i18n="hero.badge1">6 languages</span>
+          <span class="badge" data-i18n="hero.badge2">Video + Podcast</span>
+          <span class="badge" data-i18n="hero.badge3">Beginner → Pro paths</span>
+          <span class="badge" data-i18n="hero.badge4">Certificates</span>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:10px">
+          <a href="#courses" class="btn" data-i18n="hero.primary">Start Learning</a>
+          <a href="#pricing" class="btn secondary" data-i18n="hero.secondary">See Pricing</a>
+        </div>
+      </div>
+      <div class="panel" aria-label="Media preview">
+        <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:16/9;background:#0e0f1a;border:1px solid var(--border)">
+          <img src="https://images.unsplash.com/photo-1555255707-c07966088b7b?q=80&w=1200&auto=format&fit=crop" alt="AI learning preview" loading="lazy"/>
+          <span style="position:absolute;bottom:12px;left:12px;background:rgba(0,0,0,.55);padding:8px 10px;border-radius:999px;font-size:12px">▶︎ 00:45 teaser</span>
+        </div>
+        <div style="padding:16px"><p class="lead" data-i18n="hero.caption">Watch a 45‑second tour: how AI Mastery Academy makes complex topics simple and hands‑on.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2 data-i18n="value.title">What makes us different</h2>
+      <p class="lead" data-i18n="value.lead">Not just videos. You’ll practice through guided projects, templates, and real‑world challenges.</p>
+      <div class="grid c3">
+        <div class="course-card"><h3 data-i18n="value.v1.t">Project‑first curriculum</h3><p data-i18n="value.v1.d">Every module ends with a build: chatbot, data app, or automation you can deploy today.</p></div>
+        <div class="course-card"><h3 data-i18n="value.v2.t">Multilingual by design</h3><p data-i18n="value.v2.d">Take courses in your language. Translations with human review for clarity and nuance.</p></div>
+        <div class="course-card"><h3 data-i18n="value.v3.t">Micro‑lessons</h3><p data-i18n="value.v3.d">Bite‑size 5–10 minute videos & podcasts, so you can learn consistently without burnout.</p></div>
+      </div>
+    </section>
+
+    <section id="courses">
+      <h2 data-i18n="courses.title">Popular paths</h2>
+      <p class="lead" data-i18n="courses.lead">Choose a track: beginner to job‑ready. Free intro lessons on every path.</p>
+      <div class="grid c3">
+        <article class="course-card">
+          <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:16/9;background:#0e0f1a;border:1px solid var(--border)"><img src="https://images.unsplash.com/photo-1552072092-7f9b8d63efcb?q=80&w=1200&auto=format&fit=crop" alt="Beginner AI course" loading="lazy"></div>
+          <h3 data-i18n="courses.c1.t">AI for Beginners</h3>
+          <div class="meta"><span data-i18n="courses.c1.m">6h • Video</span><span>•</span><span data-i18n="courses.c1.c">Certificate</span></div>
+          <p data-i18n="courses.c1.d">Foundations of AI, prompt design, and hands‑on mini‑projects.</p>
+          <a href="course.html?id=beginners" class="btn" style="margin-top:10px" data-i18n="courses.start">Start Free</a>
+        </article>
+        <article class="course-card">
+          <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:16/9;background:#0e0f1a;border:1px solid var(--border)"><img src="https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?q=80&w=1200&auto=format&fit=crop" alt="Generative AI course" loading="lazy"></div>
+          <h3 data-i18n="courses.c2.t">ChatGPT & Generative AI Mastery</h3>
+          <div class="meta"><span data-i18n="courses.c2.m">8h • Video/Podcast</span><span>•</span><span data-i18n="courses.c2.c">Templates</span></div>
+          <p data-i18n="courses.c2.d">Use ChatGPT and leading tools to automate work and create content at scale.</p>
+          <a href="course.html?id=genai" class="btn" style="margin-top:10px" data-i18n="courses.start">Start Free</a>
+        </article>
+        <article class="course-card">
+          <div style="position:relative;border-radius:16px;overflow:hidden;aspect-ratio:16/9;background:#0e0f1a;border:1px solid var(--border)"><img src="https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?q=80&w=1200&auto=format&fit=crop" alt="Business AI course" loading="lazy"></div>
+          <h3 data-i18n="courses.c3.t">AI for Business & Startups</h3>
+          <div class="meta"><span data-i18n="courses.c3.m">7h • Video</span><span>•</span><span data-i18n="courses.c3.c">Case studies</span></div>
+          <p data-i18n="courses.c3.d">Automate workflows, design AI copilots, and scale operations with practical playbooks.</p>
+          <a href="course.html?id=business" class="btn" style="margin-top:10px" data-i18n="courses.start">Start Free</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="how">
+      <h2 data-i18n="how.title">How it works</h2>
+      <div class="steps">
+        <div class="step"><span class="n">1</span><h3 data-i18n="how.s1.t">Pick your path</h3><p data-i18n="how.s1.d">Beginner, Generative AI, or Business tracks with clear outcomes.</p></div>
+        <div class="step"><span class="n">2</span><h3 data-i18n="how.s2.t">Watch micro‑lessons</h3><p data-i18n="how.s2.d">Short videos and podcasts with transcripts in your language.</p></div>
+        <div class="step"><span class="n">3</span><h3 data-i18n="how.s3.t">Build & submit</h3><p data-i18n="how.s3.d">Complete hands‑on challenges. Get feedback from mentors.</p></div>
+        <div class="step"><span class="n">4</span><h3 data-i18n="how.s4.t">Earn certificates</h3><p data-i18n="how.s4.d">Shareable badges and certificates to boost your profile.</p></div>
+      </div>
+    </section>
+
+    <section id="community">
+      <h2 data-i18n="testimonials.title">Loved by learners</h2>
+      <div class="grid c2">
+        <div class="testimonial"><div class="avatar" aria-hidden="true"></div><div><strong>Samir</strong> — <span data-i18n="t.s1">“The projects made AI click for me. I launched my first bot in a weekend.”</span></div></div>
+        <div class="testimonial"><div class="avatar" aria-hidden="true"></div><div><strong>Ana</strong> — <span data-i18n="t.s2">“Short lessons, clear tasks, and helpful feedback. Way better than typical courses.”</span></div></div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <h2 data-i18n="pricing.title">Simple pricing</h2>
+      <p class="lead" data-i18n="pricing.lead">Start free. Upgrade when you’re ready. Cancel anytime.</p>
+      <div class="pricing">
+        <div class="price-card"><h3 data-i18n="pricing.free.t">Free</h3><div class="price">$0</div><ul class="foot"><li data-i18n="pricing.free.l1">Intro modules</li><li data-i18n="pricing.free.l2">Community access</li><li data-i18n="pricing.free.l3">Monthly live AMA</li></ul><a href="#signup" class="btn" data-i18n="pricing.free.cta">Join Free</a></div>
+        <div class="price-card" style="border:2px solid var(--brand2)"><h3 data-i18n="pricing.pro.t">Pro</h3><div class="price">$19<span style="font-size:14px;color:var(--muted)">/mo</span></div><ul class="foot"><li data-i18n="pricing.pro.l1">All courses & paths</li><li data-i18n="pricing.pro.l2">Certificates</li><li data-i18n="pricing.pro.l3">Project reviews</li></ul><a href="#checkout" class="btn" data-i18n="pricing.pro.cta">Start Pro</a></div>
+        <div class="price-card"><h3 data-i18n="pricing.team.t">Teams</h3><div class="price">$99<span style="font-size:14px;color:var(--muted)">/team/mo</span></div><ul class="foot"><li data-i18n="pricing.team.l1">10 seats</li><li data-i18n="pricing.team.l2">Manager dashboard</li><li data-i18n="pricing.team.l3">Custom onboarding</li></ul><a href="#contact" class="btn" data-i18n="pricing.team.cta">Contact Sales</a></div>
+      </div>
+    </section>
+
+    <section class="panel" id="signup" style="padding:24px">
+      <div class="grid c2">
+        <div><h2 data-i18n="newsletter.title">Get the free "AI in 5 minutes" newsletter</h2><p class="lead" data-i18n="newsletter.lead">Short, practical tips and project ideas. No spam.</p></div>
+        <form onsubmit="event.preventDefault();alert(trans('newsletter.thanks'));" aria-label="Newsletter form" style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+          <input required type="email" placeholder="you@domain.com" aria-label="Email" style="flex:1;min-width:220px;padding:12px 14px;border-radius:12px;border:1px solid var(--border);background:var(--bg-soft);color:var(--text)">
+          <button class="btn" data-i18n="newsletter.cta">Subscribe</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <div>&copy; <span id="year"></span> AI Mastery Academy · <a href="#" data-i18n="footer.privacy">Privacy</a> · <a href="#" data-i18n="footer.terms">Terms</a></div>
+      <div>✨ <span data-i18n="footer.tag">Built to help you learn AI, consistently.</span></div>
+    </div>
+  </footer>
+
+  <script>
+    const CONTACT_EMAIL = 'cherryfran84@yahoo.com';
+    const i18n = {
+      en:{meta:{title:'AI Mastery Academy — Learn AI in Your Language',description:'A multilingual AI academy with short videos, podcasts, and hands‑on projects. Start free. Become job‑ready.'},
+          nav:{courses:'Courses',pricing:'Pricing',community:'Community',faq:'FAQ',cta:'Join Free'},
+          hero:{title:'Learn AI in your language. Build real projects. Get certified.',subtitle:'A project‑first AI academy with short videos, podcasts, and interactive labs. Start for free, upgrade anytime.',badge1:'6 languages',badge2:'Video + Podcast',badge3:'Beginner → Pro paths',badge4:'Certificates',primary:'Start Learning',secondary:'See Pricing',caption:'Watch a 45‑second tour: how AI Mastery Academy makes complex topics simple and hands‑on.'},
+          value:{title:'What makes us different',lead:'Not just videos. You’ll practice through guided projects, templates, and real‑world challenges.',v1:{t:'Project‑first curriculum',d:'Every module ends with a build: chatbot, data app, or automation you can deploy today.'},v2:{t:'Multilingual by design',d:'Take courses in your language. Translations with human review for clarity and nuance.'},v3:{t:'Micro‑lessons',d:'Bite‑size 5–10 minute videos & podcasts, so you can learn consistently without burnout.'}},
+          courses:{title:'Popular paths',lead:'Choose a track: beginner to job‑ready. Free intro lessons on every path.',start:'Start Free',c1:{t:'AI for Beginners',m:'6h • Video',c:'Certificate',d:'Foundations of AI, prompt design, and hands‑on mini‑projects.'},c2:{t:'ChatGPT & Generative AI Mastery',m:'8h • Video/Podcast',c:'Templates',d:'Use ChatGPT and leading tools to automate work and create content at scale.'},c3:{t:'AI for Business & Startups',m:'7h • Video',c:'Case studies',d:'Automate workflows, design AI copilots, and scale operations with practical playbooks.'}},
+          how:{title:'How it works',s1:{t:'Pick your path',d:'Beginner, Generative AI, or Business tracks with clear outcomes.'},s2:{t:'Watch micro‑lessons',d:'Short videos and podcasts with transcripts in your language.'},s3:{t:'Build & submit',d:'Complete hands‑on challenges. Get feedback from mentors.'},s4:{t:'Earn certificates',d:'Shareable badges and certificates to boost your profile.'}},
+          testimonials:{title:'Loved by learners'},t:{s1:'“The projects made AI click for me. I launched my first bot in a weekend.”',s2:'“Short lessons, clear tasks, and helpful feedback. Way better than typical courses.”'},
+          pricing:{title:'Simple pricing',lead:'Start free. Upgrade when you’re ready. Cancel anytime.',free:{t:'Free',l1:'Intro modules',l2:'Community access',l3:'Monthly live AMA',cta:'Join Free'},pro:{t:'Pro',l1:'All courses & paths',l2:'Certificates',l3:'Project reviews',cta:'Start Pro'},team:{t:'Teams',l1:'10 seats',l2:'Manager dashboard',l3:'Custom onboarding',cta:'Contact Sales'}},
+          faq:{title:'Frequently asked questions',q1:'How are translations handled?',a1:'We start with machine translation, then refine core lessons with human review to ensure clarity and accuracy.',q2:'Do I need coding experience?',a2:'No. We offer a non‑coding Beginner path and a Builder path for Python/JS when you’re ready.',q3:'Can I cancel anytime?',a3:'Yes. Manage your subscription from your dashboard with one click.'},
+          newsletter:{title:'Get the free "AI in 5 minutes" newsletter',lead:'Short, practical tips and project ideas. No spam.',cta:'Subscribe',thanks:'Thanks! Check your inbox for a confirmation.'},
+          footer:{privacy:'Privacy',terms:'Terms',tag:'Built to help you learn AI, consistently.'},
+          bot:{title:'Need help?',hi:'Hi! I can answer quick questions.',placeholder:'Ask a question…',send:'Send',fallback:`I couldn’t find that. Please email us at ${CONTACT_EMAIL}.`,faq:[{q:'How do I enroll?',a:'Click any “Start Free” button. You’ll create an account and access intro modules.'},{q:'What languages do you support?',a:'English, Spanish, French, Hindi, Chinese (Simplified), and Arabic.'},{q:'How much does it cost?',a:'Free plan available. Pro plan is $19/month; Teams starts at $99/month.'},{q:'Do I get a certificate?',a:'Yes, certificates are included with the Pro plan.'}]} },
+      es:{nav:{courses:'Cursos',pricing:'Precios',community:'Comunidad',faq:'FAQ',cta:'Únete gratis'},hero:{title:'Aprende IA en tu idioma. Construye proyectos reales. Obtén certificados.',subtitle:'Academia orientada a proyectos con videos cortos y laboratorios.',badge1:'6 idiomas',badge2:'Video + Pódcast',badge3:'Rutas Principiante → Pro',badge4:'Certificados',primary:'Empezar a aprender',secondary:'Ver precios',caption:'Mira un tour de 45 segundos.'},value:{title:'Qué nos hace diferentes',lead:'No solo videos; proyectos guiados y retos reales.',v1:{t:'Currículo por proyectos',d:'Cada módulo termina con algo desplegable.'},v2:{t:'Multilingüe de origen',d:'Cursos en tu idioma con revisión humana.'},v3:{t:'Micro‑lecciones',d:'Videos/pódcasts de 5–10 minutos.'}},courses:{title:'Rutas populares',lead:'Elige tu camino: de principiante a listo para el trabajo.',start:'Empezar gratis',c1:{t:'IA para principiantes',m:'6h • Video',c:'Certificado',d:'Fundamentos de IA y mini‑proyectos.'},c2:{t:'Dominio de ChatGPT y GenAI',m:'8h • Video/Pódcast',c:'Plantillas',d:'Usa ChatGPT y herramientas para automatizar y crear contenido.'},c3:{t:'IA para negocios y startups',m:'7h • Video',c:'Casos de estudio',d:'Automatiza flujos y diseña copilotos.'}},how:{title:'Cómo funciona',s1:{t:'Elige tu ruta',d:'Principiante, GenAI o Negocios.'},s2:{t:'Mira micro‑lecciones',d:'Con transcripciones en tu idioma.'},s3:{t:'Construye y entrega',d:'Desafíos prácticos y feedback.'},s4:{t:'Obtén certificados',d:'Insignias compartibles.'}},testimonials:{title:'Amado por estudiantes'},t:{s1:'“Los proyectos me hicieron entender la IA.”',s2:'“Lecciones cortas y claras.”'},pricing:{title:'Precios simples',lead:'Empieza gratis. Mejora cuando quieras.',free:{t:'Gratis',l1:'Módulos intro',l2:'Comunidad',l3:'AMA mensual',cta:'Únete gratis'},pro:{t:'Pro',l1:'Todos los cursos',l2:'Certificados',l3:'Revisión de proyectos',cta:'Empezar Pro'},team:{t:'Equipos',l1:'10 plazas',l2:'Panel de gestión',l3:'Onboarding personalizado',cta:'Contactar ventas'}},faq:{title:'Preguntas frecuentes',q1:'¿Cómo traducen el contenido?',a1:'Traducción automática + revisión humana.',q2:'¿Necesito programar?',a2:'No, hay ruta sin código.',q3:'¿Puedo cancelar?',a3:'Sí, en cualquier momento.'},newsletter:{title:'Recibe el boletín “IA en 5 minutos”',lead:'Consejos prácticos e ideas de proyectos.',cta:'Suscribirse',thanks:'¡Gracias! Revisa tu correo.'},footer:{privacy:'Privacidad',terms:'Términos',tag:'Hecho para aprender IA.'},
+          bot:{title:'¿Necesitas ayuda?',hi:'¡Hola! Respondo preguntas rápidas.',placeholder:'Escribe una pregunta…',send:'Enviar',fallback:`No encontré eso. Escríbenos a ${CONTACT_EMAIL}.`,faq:[{q:'¿Cómo me inscribo?',a:'Pulsa “Empezar gratis”.'},{q:'¿Qué idiomas hay?',a:'Inglés, Español, Francés, Hindi, Chino, Árabe.'},{q:'¿Cuánto cuesta?',a:'Plan gratis; Pro $19/mes; Equipos desde $99/mes.'},{q:'¿Certificado?',a:'Sí, incluido en Pro.'}]}},
+      fr:{nav:{courses:'Cours',pricing:'Tarifs',community:'Communauté',faq:'FAQ',cta:'Inscription'},hero:{title:'Apprenez l’IA dans votre langue. Réalisez de vrais projets. Obtenez un certificat.',subtitle:'Académie orientée projet avec vidéos courtes et labs.',badge1:'6 langues',badge2:'Vidéo + Podcast',badge3:'Parcours Débutant → Pro',badge4:'Certificats',primary:'Commencer',secondary:'Voir les tarifs',caption:'Découvrez l’académie en 45 secondes.'},value:{title:'Ce qui nous différencie',lead:'Pas seulement des vidéos : pratique guidée et défis réels.',v1:{t:'Programme orienté projet',d:'Chaque module se termine par une réalisation.'},v2:{t:'Multilingue par conception',d:'Cours dans votre langue, revus par des humains.'},v3:{t:'Micro‑leçons',d:'Vidéos/podcasts de 5–10 min.'}},courses:{title:'Parcours populaires',lead:'Choisissez votre parcours : du débutant à l’employable.',start:'Démarrer gratuitement',c1:{t:'IA pour débutants',m:'6h • Vidéo',c:'Certificat',d:'Fondamentaux et mini‑projets.'},c2:{t:'Maîtrise de ChatGPT & GenAI',m:'8h • Vidéo/Podcast',c:'Modèles',d:'Utilisez ChatGPT pour automatiser et créer.'},c3:{t:'IA pour Business & Startups',m:'7h • Vidéo',c:'Études de cas',d:'Automatisez et créez des copilotes.'}},how:{title:'Comment ça marche',s1:{t:'Choisissez votre parcours',d:'Débutant, GenAI ou Business.'},s2:{t:'Regardez des micro‑leçons',d:'Avec transcription dans votre langue.'},s3:{t:'Construisez & soumettez',d:'Défis pratiques et retours.'},s4:{t:'Obtenez des certificats',d:'Badges partageables.'}},testimonials:{title:'Plébiscité par les apprenants'},t:{s1:'« Les projets ont tout déclenché. »',s2:'« Leçons courtes et claires. »'},pricing:{title:'Tarification simple',lead:'Commencez gratuitement. Passez en Pro quand vous voulez.',free:{t:'Gratuit',l1:'Modules d’intro',l2:'Accès communauté',l3:'AMA mensuel',cta:'S’inscrire'},pro:{t:'Pro',l1:'Tous les cours',l2:'Certificats',l3:'Revue de projets',cta:'Passer en Pro'},team:{t:'Équipes',l1:'10 places',l2:'Tableau de bord',l3:'Onboarding sur mesure',cta:'Contacter les ventes'}},faq:{title:'Questions fréquentes',q1:'Comment sont gérées les traductions ?',a1:'Traduction auto puis révision humaine.',q2:'Faut‑il savoir coder ?',a2:'Non, un parcours sans code est inclus.',q3:'Puis‑je annuler ?',a3:'Oui, à tout moment.'},newsletter:{title:'Recevez la newsletter « IA en 5 minutes »',lead:'Conseils pratiques et idées.',cta:'S’abonner',thanks:'Merci ! Vérifiez votre e‑mail.'},footer:{privacy:'Confidentialité',terms:'Conditions',tag:'Conçu pour apprendre l’IA.'},
+          bot:{title:'Besoin d’aide ?',hi:'Salut ! Je réponds aux questions rapides.',placeholder:'Posez votre question…',send:'Envoyer',fallback:`Je n’ai pas trouvé. Écrivez‑nous à ${CONTACT_EMAIL}.`,faq:[{q:'Comment m’inscrire ?',a:'Cliquez sur « Démarrer gratuitement ». '},{q:'Quelles langues ?',a:'EN, ES, FR, HI, ZH, AR.'},{q:'Combien ça coûte ?',a:'Gratuit, Pro 19$/mois, Équipes dès 99$.'},{q:'Certificat ?',a:'Oui, inclus en Pro.'}]}},
+      hi:{nav:{courses:'कोर्स',pricing:'कीमत',community:'कम्युनिटी',faq:'प्रश्न',cta:'फ्री में जुड़ें'},hero:{title:'अपनी भाषा में AI सीखें। असली प्रोजेक्ट बनाएं। सर्टिफिकेट पाएं।',subtitle:'प्रोजेक्ट‑फर्स्ट अकादमी — शॉर्ट वीडियो/पॉडकास्ट।',badge1:'6 भाषाएँ',badge2:'वीडियो + पॉडकास्ट',badge3:'बिगिनर → प्रो',badge4:'सर्टिफिकेट',primary:'सीखना शुरू करें',secondary:'कीमत देखें',caption:'45‑सेकंड का टूर देखें।'},value:{title:'हम अलग कैसे हैं',lead:'सिर्फ वीडियो नहीं — असाइनमेंट/प्रोजेक्ट के साथ अभ्यास।',v1:{t:'प्रोजेक्ट‑फर्स्ट पाठ्यक्रम',d:'हर मॉड्यूल के अंत में एक बिल्ड।'},v2:{t:'मल्टीलिंगुअल',d:'आपकी भाषा में कोर्स — ह्यूमन रिव्यू सहित।'},v3:{t:'माइक्रो‑लेसन',d:'5–10 मिनट के वीडियो/पॉडकास्ट।'}},courses:{title:'लोकप्रिय पाथ',lead:'बिगिनर से जॉब‑रेडी तक।',start:'फ्री शुरू करें',c1:{t:'शुरुआती के लिए AI',m:'6h • वीडियो',c:'प्रमाणपत्र',d:'बुनियाद, प्रॉम्प्ट्स, मिनी‑प्रोजेक्ट्स।'},c2:{t:'ChatGPT व GenAI मास्टरी',m:'8h • वीडियो/पॉडकास्ट',c:'टेम्पलेट्स',d:'ChatGPT से ऑटोमेशन और कंटेंट।'},c3:{t:'बिज़नेस व स्टार्टअप्स के लिए AI',m:'7h • वीडियो',c:'केस स्टडी',d:'वर्कफ़्लो ऑटोमेशन और कोपायलट।'}},how:{title:'कैसे काम करता है',s1:{t:'पाथ चुनें',d:'बिगिनर, GenAI, या बिज़नेस।'},s2:{t:'माइक्रो‑लेसन देखें',d:'ट्रांसक्रिप्ट के साथ।'},s3:{t:'बनाएँ और सबमिट करें',d:'हैंड्स‑ऑन चैलेंज।'},s4:{t:'सर्टिफिकेट कमाएँ',d:'शेयर करने योग्य बैज।'}},testimonials:{title:'सीखने वालों को पसंद'},t:{s1:'“प्रोजेक्ट्स ने मुझे AI समझाया।”',s2:'“शॉर्ट लेसन, क्लियर टास्क।”'},pricing:{title:'सरल कीमत',lead:'फ्री शुरू करें। जब चाहें अपग्रेड करें।',free:{t:'फ्री',l1:'इंट्रो मॉड्यूल',l2:'कम्युनिटी',l3:'मासिक AMA',cta:'फ्री में जुड़ें'},pro:{t:'प्रो',l1:'सारे कोर्स',l2:'सर्टिफिकेट',l3:'प्रोजेक्ट रिव्यू',cta:'प्रो शुरू करें'},team:{t:'टीम',l1:'10 सीट',l2:'मैनेजर डैशबोर्ड',l3:'कस्टम ऑनबोर्डिंग',cta:'सेल्स से संपर्क करें'}},faq:{title:'अक्सर पूछे जाने वाले प्रश्न',q1:'ट्रांसलेशन कैसे होते हैं?',a1:'पहले मशीन ट्रांसलेशन, फिर ह्यूमन रिव्यू।',q2:'क्या कोडिंग ज़रूरी है?',a2:'नहीं। बिना‑कोड पाथ उपलब्ध है।',q3:'कैंसिल कर सकते हैं?',a3:'हाँ, कभी भी।'},newsletter:{title:'फ्री “5 मिनट में AI” न्यूज़लेटर',lead:'शॉर्ट टिप्स और प्रोजेक्ट आइडिया।',cta:'सब्सक्राइब',thanks:'धन्यवाद! ईमेल देखें।'},footer:{privacy:'प्राइवेसी',terms:'टर्म्स',tag:'नियमित रूप से AI सीखें।'},
+          bot:{title:'मदद चाहिए?',hi:'नमस्ते! मैं त्वरित प्रश्नों के उत्तर देता हूँ।',placeholder:'प्रश्न लिखें…',send:'भेजें',fallback:`मिला नहीं। हमें ईमेल करें: ${CONTACT_EMAIL}`,faq:[{q:'एनरोल कैसे करूँ?',a:'“फ्री शुरू करें” पर क्लिक करें।'},{q:'कौन‑सी भाषाएँ?',a:'EN, ES, FR, HI, ZH, AR.'},{q:'कितना शुल्क?',a:'फ्री; Pro $19/माह; Teams $99/माह से।'},{q:'सर्टिफिकेट?',a:'हाँ, Pro में।'}]}},
+      zh:{nav:{courses:'课程',pricing:'定价',community:'社区',faq:'常见问题',cta:'免费加入'},hero:{title:'用你的语言学习AI，做真实项目，获得证书。',subtitle:'以项目为先的学院，短视频与互动实验室。',badge1:'6 种语言',badge2:'视频 + 播客',badge3:'新手 → 进阶路径',badge4:'证书',primary:'开始学习',secondary:'查看定价',caption:'45 秒快速了解学院。'},value:{title:'我们的不同',lead:'不仅是视频，还有引导式项目与真实挑战。',v1:{t:'项目优先课程',d:'每个模块都产出可上线的成果。'},v2:{t:'多语言设计',d:'课程支持你的语言，并有人审校。'},v3:{t:'微课程',d:'5–10 分钟视频/播客。'}},courses:{title:'热门路径',lead:'从新手到求职准备就绪。',start:'免费开始',c1:{t:'AI 零基础',m:'6h • 视频',c:'证书',d:'AI 基础、提示工程与小项目。'},c2:{t:'ChatGPT 与生成式AI精通',m:'8h • 视频/播客',c:'模板',d:'使用 ChatGPT 自动化与创作。'},c3:{t:'商业与创业中的 AI',m:'7h • 视频',c:'案例研究',d:'自动化流程并设计协同助手。'}},how:{title:'如何运作',s1:{t:'选择路径',d:'新手、GenAI、商业。'},s2:{t:'观看微课程',d:'含本地语言字幕/文稿。'},s3:{t:'动手完成任务',d:'提交项目，获得反馈。'},s4:{title:'获得证书',d:'可分享徽章与证书。'}},testimonials:{title:'学员喜爱'},t:{s1:'“项目让我真正理解了AI。”',s2:'“课程短小清晰。”'},pricing:{title:'简单定价',lead:'免费开始，随时升级。',free:{t:'免费',l1:'入门模块',l2:'社区访问',l3:'每月 AMA',cta:'免费加入'},pro:{t:'专业版',l1:'全部课程',l2:'证书',l3:'项目点评',cta:'开始专业版'},team:{t:'团队版',l1:'10 席位',l2:'管理面板',l3:'定制上手',cta:'联系销售'}},faq:{title:'常见问题',q1:'如何翻译？',a1:'机器翻译 + 人工校对。',q2:'需要会编程吗？',a2:'不需要，提供无代码路径。',q3:'可随时取消吗？',a3:'可以。'},newsletter:{title:'订阅「5分钟AI」周报',lead:'实用技巧与项目点子。',cta:'订阅',thanks:'谢谢！请查收邮件。'},footer:{privacy:'隐私',terms:'条款',tag:'帮助你持续学习AI。'},
+          bot:{title:'需要帮助？',hi:'你好！我可以解答常见问题。',placeholder:'输入问题…',send:'发送',fallback:`未找到。请电邮：${CONTACT_EMAIL}`,faq:[{q:'如何注册？',a:'点击“免费开始”。'},{q:'支持哪些语言？',a:'英、西、法、印地语、中文、阿拉伯语。'},{q:'价格？',a:'免费；专业版 $19/月；团队 $99/月起。'},{q:'证书？',a:'专业版包含。'}]}},
+      ar:{nav:{courses:'الدورات',pricing:'الأسعار',community:'المجتمع',faq:'الأسئلة',cta:'انضم مجانًا'},hero:{title:'تعلّم الذكاء الاصطناعي بلغتك. ابنِ مشاريع حقيقية. واحصل على شهادات.',subtitle:'أكاديمية تركّز على المشاريع ودروس قصيرة.',badge1:'٦ لغات',badge2:'فيديو + بودكاست',badge3:'مبتدئ → محترف',badge4:'شهادات',primary:'ابدأ التعلم',secondary:'شاهد الأسعار',caption:'جولة 45 ثانية.'},value:{title:'ما يميزنا',lead:'ليست فيديوهات فقط — تدريب عملي عبر مشاريع.',v1:{t:'منهج قائم على المشاريع',d:'كل وحدة تنتهي بمنتج قابل للنشر.'},v2:{t:'متعدد اللغات',d:'دروس بلغتك مع مراجعة بشرية.'},v3:{t:'دروس قصيرة',d:'5–10 دقائق.'}},courses:{title:'مسارات شائعة',lead:'من المبتدئ حتى الجاهزية للعمل.',start:'ابدأ مجانًا',c1:{t:'الذكاء الاصطناعي للمبتدئين',m:'6س • فيديو',c:'شهادة',d:'الأساسيات ومشاريع صغيرة.'},c2:{t:'إتقان ChatGPT والذكاء التوليدي',m:'8س • فيديو/بودكاست',c:'قوالب',d:'استخدم ChatGPT للأتمتة وإنشاء المحتوى.'},c3:{t:'الذكاء الاصطناعي للأعمال والشركات الناشئة',m:'7س • فيديو',c:'دراسات حالة',d:'أتمتة العمليات وتصميم مساعدين.'}},how:{title:'كيف يعمل',s1:{t:'اختر مسارك',d:'مبتدئ أو GenAI أو أعمال.'},s2:{t:'شاهد الدروس القصيرة',d:'مع نصوص بلغتك.'},s3:{t:'ابنِ وقدّم',d:'تحديات عملية وتغذية راجعة.'},s4:{t:'احصل على شهادات',d:'شارات قابلة للمشاركة.'}},testimonials:{title:'محبوب لدى المتعلمين'},t:{s1:'“المشاريع جعلت الذكاء الاصطناعي واضحًا لي.”',s2:'“دروس قصيرة ومهام واضحة.”'},pricing:{title:'أسعار بسيطة',lead:'ابدأ مجانًا وطور خطتك متى شئت.',free:{t:'مجاني',l1:'وحدات تمهيدية',l2:'وصول للمجتمع',l3:'جلسة شهرية',cta:'انضم مجانًا'},pro:{t:'احترافي',l1:'كل الدورات',l2:'شهادات',l3:'مراجعات مشاريع',cta:'ابدأ الاحترافي'},team:{t:'فرق',l1:'10 مقاعد',l2:'لوحة تحكم',l3:'تهيئة مخصصة',cta:'تواصل مع المبيعات'}},faq:{title:'أسئلة شائعة',q1:'كيف تتم الترجمة؟',a1:'نستخدم الترجمة الآلية ثم المراجعة البشرية.',q2:'هل أحتاج للبرمجة؟',a2:'لا. يوجد مسار بدون كود.',q3:'هل يمكن الإلغاء؟',a3:'نعم في أي وقت.'},newsletter:{title:'اشترك في نشرتنا المجانية',lead:'نصائح عملية وأفكار مشاريع.',cta:'اشترك',thanks:'شكرًا! تفقد بريدك.'},footer:{privacy:'الخصوصية',terms:'الشروط',tag:'نساعدك على تعلّم الذكاء الاصطناعي باستمرار.'},
+          bot:{title:'تحتاج مساعدة؟',hi:'مرحبًا! أجيب عن الأسئلة الشائعة.',placeholder:'اكتب سؤالك…',send:'إرسال',fallback:`لم أجد إجابة. راسلنا: ${CONTACT_EMAIL}`,faq:[{q:'كيف أسجّل؟',a:'انقر “ابدأ مجانًا”.'},{q:'ما اللغات المتاحة؟',a:'EN, ES, FR, HI, ZH, AR.'},{q:'كم التكلفة؟',a:'خطة مجانية؛ برو 19$/شهر؛ فرق 99$/فريق/شهر.'},{q:'هل توجد شهادة؟',a:'نعم، ضمن برو.'}]}},
+    };
+
+    let current = localStorage.getItem('lang') || 'en';
+    function trans(path){
+      const parts = path.split('.'); let v = i18n[current]; for(const p of parts){ v = v?.[p]; }
+      return typeof v === 'string' ? v : path;
+    }
+    function applyLanguage(lang){
+      current = lang; localStorage.setItem('lang', lang);
+      document.documentElement.lang = lang; document.documentElement.dir = (lang==='ar')?'rtl':'ltr';
+      document.querySelectorAll('[data-i18n]').forEach(el => { const key = el.getAttribute('data-i18n'); const val = trans(key); if(val) el.textContent = val; });
+      document.title = i18n[lang]?.meta?.title || i18n.en.meta.title;
+      const desc = document.querySelector('meta[name="description"]'); if(desc) desc.setAttribute('content', i18n[lang]?.meta?.description || i18n.en.meta.description);
+    }
+    const select = document.getElementById('lang'); if(select){ select.value = current; select.addEventListener('change', e => applyLanguage(e.target.value)); }
+    applyLanguage(current); document.getElementById('year').textContent = new Date().getFullYear();
+
+    // FAQ bot
+    function normalize(s){ return s.toLowerCase().replace(/[^\p{L}\p{N}\s]/gu,'').trim(); }
+    function FAQBot(){
+      const cfg = i18n[current].bot;
+      const launch = document.createElement('button'); launch.className='aima-bot-launch'; launch.textContent='?'; launch.setAttribute('aria-label','Open help');
+      const wrap = document.createElement('div'); wrap.className='aima-bot';
+      wrap.innerHTML = `<header><strong>${cfg.title}</strong><button aria-label="Close" style="background:transparent;border:0;color:#fff;font-size:18px;cursor:pointer">×</button></header>
+                        <div class="body" role="log" aria-live="polite"></div>
+                        <div class="input"><input type="text" placeholder="${cfg.placeholder}" aria-label="${cfg.placeholder}" /><button class="btn">${cfg.send}</button></div>`;
+      document.body.append(launch,wrap);
+      const body = wrap.querySelector('.body'); const input = wrap.querySelector('input'); const send = wrap.querySelector('.btn'); const close = wrap.querySelector('header button');
+      function say(txt){ const m = document.createElement('div'); m.className='message'; m.textContent = txt; body.appendChild(m); body.scrollTop = body.scrollHeight; }
+      function greet(){ say(cfg.hi); say(cfg.faq.map(f=>'• '+f.q).join('\n')); }
+      function open(){ wrap.style.display='block'; launch.style.display='none'; if(!body.childElementCount) greet(); setTimeout(()=>input.focus(),100); }
+      function hide(){ wrap.style.display='none'; launch.style.display='block'; }
+      function answer(q){ const nq = normalize(q); const hit = cfg.faq.find(f => normalize(f.q).includes(nq) || nq.includes(normalize(f.q)) || normalize(f.a).includes(nq)); say(hit ? hit.a : cfg.fallback); }
+      launch.onclick = open; close.onclick = hide; send.onclick = ()=>{ if(!input.value.trim()) return; say(input.value); answer(input.value); input.value=''; };
+      input.addEventListener('keydown', e=>{ if(e.key==='Enter') send.click(); });
+      setTimeout(open, 2000); // auto-open per your preference
+    }
+    window.addEventListener('load', FAQBot);
+  </script>
+</body>
+</html>
