@@ -6,7 +6,40 @@
   <meta name="description" content="Multilingual AI courses with short videos, podcasts, and projects. Start free; upgrade anytime.">
   <style>
     :root{--bg:#0b1320;--card:#121c2b;--text:#f5fbff;--muted:#b7c7d9;--border:#243550;--brand:#00e5ff;--brand2:#4f46e5}
-    *{box-sizing:border-box} html,body{margin:0} body{font-family:system-ui,Segoe UI,Arial;background:var(--bg);color:var(--text);line-height:1.5}
+    *{box-sizing:border-box} html,<!-- Trailer Modal -->
+<div class="modal-overlay" id="trailerModal" aria-hidden="true" style="display:none">
+  <div class="modal" role="dialog" aria-labelledby="trailerTitle" style="max-width:960px;width:92vw">
+    <header>
+      <h3 id="trailerTitle">AI Mastery Academy — Trailer</h3>
+      <button id="closeTrailer" style="background:transparent;border:0;color:#fff;font-size:20px;cursor:pointer">×</button>
+    </header>
+    <div class="body" style="padding:0">
+      <div style="position:relative;padding-top:56.25%;width:100%">
+        <iframe id="trailerFrame" src="" title="Trailer"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          style="position:absolute;inset:0;border:0;width:100%;height:100%">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const VIDEO_ID = "YOUR_YOUTUBE_ID"; // ← replace this with your YouTube video ID
+  const btn = document.getElementById('watchTrailer');
+  const modal = document.getElementById('trailerModal');
+  const closeBtn = document.getElementById('closeTrailer');
+  const frame = document.getElementById('trailerFrame');
+  function open(){ modal.style.display='flex'; frame.src=`https://www.youtube.com/embed/${VIDEO_ID}?rel=0&modestbranding=1&autoplay=1`; }
+  function close(){ modal.style.display='none'; frame.src=''; }
+  if (btn) btn.addEventListener('click', e => { e.preventDefault(); open(); });
+  [closeBtn, modal].forEach(el => el && el.addEventListener('click', e => { if (e.target===modal || e.target===closeBtn) close(); }));
+  document.addEventListener('keydown', e => { if (e.key==='Escape') close(); });
+})();
+</script>
+body{margin:0} body{font-family:system-ui,Segoe UI,Arial;background:var(--bg);color:var(--text);line-height:1.5}
     a{color:inherit;text-decoration:none} .container{max-width:1120px;margin:0 auto;padding:24px}
     header{position:sticky;top:0;background:#0b1320f2;border-bottom:1px solid var(--border)}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
