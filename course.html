@@ -32,7 +32,94 @@
           <video id="player" controls width="100%" height="100%" style="display:block">
             <source id="vidsrc" src="" type="video/mp4">
           </video>
-        </div>
+      <script>
+  document.getElementById('year').textContent=new Date().getFullYear();
+
+  // Course catalog (feel free to change these later)
+  const data={
+    beginners:{
+      title:'AI for Beginners',
+      tagline:'No-code intro with projects',
+      desc:'Start from zero: concepts, prompting, and your first AI workflow.',
+      obj:['Understand core AI concepts','Use prompts effectively','Ship a mini project'],
+      // Use an appealing YouTube trailer for Beginners (unlisted is fine if you upload your own later)
+      youtubeId:'dQw4w9WgXcQ',   // ⚠️ placeholder — replace with your real trailer ID
+      poster:'https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1200&auto=format&fit=crop',
+      audio:'https://file-examples.com/storage/fe8bd73f2bdf70e5eb2c0a7/2017/11/file_example_MP3_700KB.mp3'
+    },
+    genai:{
+      title:'ChatGPT & Generative AI Mastery',
+      tagline:'Automate and create at scale',
+      desc:'Master ChatGPT and top GenAI tools for content and workflows.',
+      obj:['System + user prompts','Tooling & templates','Automation playbook'],
+      video:'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',
+      poster:'https://images.unsplash.com/photo-1545987796-200677ee1011?q=80&w=1200&auto=format&fit=crop',
+      audio:'https://file-examples.com/storage/fe8bd73f2bdf70e5eb2c0a7/2017/11/file_example_MP3_1MG.mp3'
+    },
+    business:{
+      title:'AI for Business & Startups',
+      tagline:'Use AI to scale ops',
+      desc:'Automate processes, design copilots, and improve KPIs.',
+      obj:['Identify ROI use cases','Design a copilot','Measure impact'],
+      video:'https://www.w3schools.com/html/mov_bbb.mp4',
+      poster:'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop',
+      audio:'https://file-examples.com/storage/fe8bd73f2bdf70e5eb2c0a7/2017/11/file_example_MP3_700KB.mp3'
+    }
+  };
+
+  const id=new URLSearchParams(location.search).get('id')||'beginners';
+  const c=data[id]||data.beginners;
+
+  document.title=c.title+' — AI Mastery Academy';
+  document.getElementById('course-title').textContent=c.title;
+  document.getElementById('course-tagline').textContent=c.tagline;
+  document.getElementById('course-desc').textContent=c.desc;
+
+  // Objectives
+  const ul=document.getElementById('course-obj'); 
+  ul.innerHTML='';
+  c.obj.forEach(x=>{const li=document.createElement('li');li.textContent=x;ul.appendChild(li);});
+
+  // MEDIA AREA: if YouTube ID exists, embed iframe; else use <video>
+  (function(){
+    const mediaWrap=document.querySelector('.panel .media') || document.querySelector('div[style*="aspect-ratio:16/9"]') || document.querySelector('main .panel');
+    const videoEl=document.getElementById('player');
+    const srcEl=document.getElementById('vidsrc');
+
+    if(c.youtubeId){
+      // Replace native video with YouTube iframe (more appealing for trailer)
+      const iframe=document.createElement('iframe');
+      iframe.width="100%"; iframe.height="100%"; iframe.style="display:block;border:0";
+      iframe.allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+      iframe.allowFullscreen=true;
+      iframe.src=`https://www.youtube.com/embed/${c.youtubeId}?rel=0&modestbranding=1`;
+      videoEl.parentNode.replaceChild(iframe, videoEl);
+    }else{
+      // Fallback to native MP4
+      if(c.poster) videoEl.setAttribute('poster', c.poster);
+      if(c.video){ srcEl.src=c.video; videoEl.load(); }
+      // Add captions track if available
+      const track=document.createElement('track');
+      track.kind='subtitles'; track.srclang='en'; track.label='English'; track.src='assets/subs/beginners-en.vtt'; // create this file below
+      videoEl.appendChild(track);
+    }
+  })();
+
+  // Podcast
+  document.getElementById('audsrc').src=c.audio;
+
+  // Simple quiz logic + adaptive nudge
+  document.getElementById('check').addEventListener('click',()=>{
+    let score=0; const a=document.querySelector('input[name="q1"]:checked')?.value; if(a==='a') score=1;
+    document.getElementById('result').textContent='Score: '+score+'/1';
+    // Adaptive suggestion
+    const box=document.createElement('div'); box.className='panel pad';
+    const next = (id==='beginners' && score<1) ? 'beginners' : (id==='genai' ? 'business' : 'genai');
+    box.innerHTML=`<h3>Recommended next step</h3><p>${score? "Great job!":"Let’s reinforce the basics."} Continue with <a class="btn" href="course.html?id=${next}">the ${next} path</a>.</p>`;
+    document.querySelector('main').appendChild(box);
+  });
+</script>
+  </div>
         <div class="pad">
           <h2>About this course</h2>
           <p id="course-desc">Description</p>
