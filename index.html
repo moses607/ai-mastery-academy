@@ -58,13 +58,26 @@
   </header>
 
   <main class="container">
-    <section class="hero">
-      <div>
-        <h1 class="title">Learn AI in your language. Build real projects. Get certified.</h1>
-        <p class="subtitle">Short videos, podcasts, and hands-on projects. Start for free, upgrade anytime.</p>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:8px">
-          <a href="#courses" class="btn">Start Free</a>
-          <a href="#pricing" class="btn secondary">See Pricing</a>
+
+     <section class="hero" style="position:relative;overflow:hidden;height:90vh;display:flex;align-items:center;justify-content:center;color:white;text-align:center">
+  
+  <!-- Background video -->
+  <video autoplay muted loop playsinline 
+    style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:-1;filter:brightness(0.5)">
+    <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+  </video>
+  
+  <!-- Overlay content -->
+  <div style="z-index:1;max-width:800px;padding:20px">
+    <h1 style="font-size:3rem;margin-bottom:0.5em">AI Mastery Academy</h1>
+    <p class="lead" style="font-size:1.5rem;margin-bottom:1em">
+      Learn AI in English, Español, Français, 中文, العربية
+    </p>
+    <a class="btn" href="#courses">Explore Courses</a>
+  </div>
+  
+</section>
+
         </div>
       </div>
       <div class="panel">
