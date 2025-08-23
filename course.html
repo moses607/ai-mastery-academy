@@ -1,5 +1,99 @@
-<!doctype html><meta charset="utf-8"><title>Privacy Policy</title>
-<div style="max-width:800px;margin:40px auto;font-family:system-ui">
-<h1>Privacy Policy</h1>
-<p>We respect your privacy. Full policy coming soon.</p>
-</div>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Course — AI Mastery Academy</title>
+  <style>
+    :root{--bg:#0b1320;--card:#121c2b;--text:#f5fbff;--muted:#b7c7d9;--border:#243550;--brand:#00e5ff;--brand2:#4f46e5}
+    *{box-sizing:border-box} html,body{margin:0} body{font-family:system-ui,Segoe UI,Arial;background:var(--bg);color:var(--text)}
+    .container{max-width:1120px;margin:0 auto;padding:24px}
+    .hero{border-bottom:1px solid var(--border);padding-bottom:12px;margin-bottom:16px}
+    .title{margin:6px 0 4px;font-size:clamp(26px,4vw,44px)} .sub{color:var(--muted)}
+    .grid{display:grid;grid-template-columns:2fr 1fr;gap:16px} @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    .panel{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+    .pad{padding:14px}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border:0;cursor:pointer}
+    footer{border-top:1px solid var(--border);color:var(--muted);margin-top:20px}
+    .foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:18px 0}
+    .foot a{color:var(--muted);text-decoration:underline}
+  </style>
+</head>
+<body>
+  <div class="container hero">
+    <a href="index.html" style="color:#b7c7d9;text-decoration:underline">← Back to Home</a>
+    <h1 id="course-title" class="title">Course</h1>
+    <p id="course-tagline" class="sub">Tagline</p>
+  </div>
+
+  <div class="container grid">
+    <main>
+      <section class="panel">
+        <div style="aspect-ratio:16/9;background:#000">
+          <video id="player" controls width="100%" height="100%" style="display:block">
+            <source id="vidsrc" src="" type="video/mp4">
+          </video>
+        </div>
+        <div class="pad">
+          <h2>About this course</h2>
+          <p id="course-desc">Description</p>
+          <h3>Objectives</h3>
+          <ul id="course-obj"></ul>
+        </div>
+      </section>
+
+      <section class="panel pad">
+        <h2>Quick quiz</h2>
+        <div>1) Which best describes “prompt engineering”?</div>
+        <label><input type="radio" name="q1" value="a"> Writing instructions to guide an AI model</label><br>
+        <label><input type="radio" name="q1" value="b"> Training a model from scratch</label><br>
+        <label><input type="radio" name="q1" value="c"> Designing a website layout</label><br>
+        <div style="margin-top:8px"><button class="btn" id="check">Check answers</button> <span id="result" style="font-weight:700"></span></div>
+      </section>
+    </main>
+
+    <aside>
+      <section class="panel pad">
+        <h3>Podcast</h3>
+        <audio controls style="width:100%">
+          <source id="audsrc" src="" type="audio/mpeg">
+        </audio>
+        <p><a href="#">Download transcript (PDF)</a></p>
+      </section>
+      <section class="panel pad">
+        <h3>Instructor</h3>
+        <p><strong>AI Mastery Team</strong> — project-first, practical teaching.</p>
+      </section>
+      <section class="panel pad" id="enroll">
+        <h3>Enroll</h3>
+        <p>Free intro lessons. Upgrade anytime.</p>
+        <button class="btn">Create free account</button>
+      </section>
+    </aside>
+  </div>
+
+  <footer>
+    <div class="container foot">
+      <div>© <span id="year"></span> AI Mastery Academy</div>
+      <div><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="cookies.html">Cookies</a></div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent=new Date().getFullYear();
+    const data={
+      beginners:{title:'AI for Beginners',tagline:'No-code intro with projects',desc:'Start from zero: concepts, prompting, and your first AI workflow.',obj:['Understand core AI concepts','Use prompts effectively','Ship a mini project'],video:'https://www.w3schools.com/html/mov_bbb.mp4',audio:'https://www.w3schools.com/html/horse.mp3'},
+      genai:{title:'ChatGPT & Generative AI Mastery',tagline:'Automate and create at scale',desc:'Master ChatGPT and top GenAI tools for content and workflows.',obj:['System + user prompts','Tooling & templates','Automation playbook'],video:'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',audio:'https://file-examples.com/storage/fe8bd73f2bdf70e5eb2c0a7/2017/11/file_example_MP3_700KB.mp3'},
+      business:{title:'AI for Business & Startups',tagline:'Use AI to scale ops',desc:'Automate processes, design copilots, and improve KPIs.',obj:['Identify ROI use cases','Design a copilot','Measure impact'],video:'https://www.w3schools.com/html/mov_bbb.mp4',audio:'https://file-examples.com/storage/fe8bd73f2bdf70e5eb2c0a7/2017/11/file_example_MP3_1MG.mp3'}
+    };
+    const id=new URLSearchParams(location.search).get('id')||'beginners';
+    const c=data[id]||data.beginners;
+    document.title=c.title+' — AI Mastery Academy';
+    document.getElementById('course-title').textContent=c.title;
+    document.getElementById('course-tagline').textContent=c.tagline;
+    document.getElementById('course-desc').textContent=c.desc;
+    const ul=document.getElementById('course-obj'); c.obj.forEach(x=>{const li=document.createElement('li');li.textContent=x;ul.appendChild(li);});
+    document.getElementById('vidsrc').src=c.video; document.getElementById('audsrc').src=c.audio; document.getElementById('player').load();
+    document.getElementById('check').addEventListener('click',()=>{let score=0; const a=document.querySelector('input[name="q1"]:checked')?.value; if(a==='a') score++; document.getElementById('result').textContent='Score: '+score+'/1';});
+  </script>
+</body>
+</html>
