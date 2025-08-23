@@ -1,0 +1,26 @@
+[
+  {
+    "id": "u-001",
+    "date": "2025-08-20",
+    "type": "release",
+    "title": "New module: Build a Personal AI Agent",
+    "summary": "Step-by-step project to ship a task-running agent with memory.",
+    "link": "course.html?id=genai"
+  },
+  {
+    "id": "u-002",
+    "date": "2025-08-18",
+    "type": "event",
+    "title": "Live AMA this Friday",
+    "summary": "Bring your projects for portfolio feedback and career Q&A.",
+    "link": "#"
+  },
+  {
+    "id": "u-003",
+    "date": "2025-08-15",
+    "type": "tip",
+    "title": "Prompt template: System + Role + Rules",
+    "summary": "A simple structure that improves output reliability across tasks.",
+    "link": "#"
+  }
+]

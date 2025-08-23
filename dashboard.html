@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- INSERT CRISP.WIDGET CODE HERE -->
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Dashboard — AI Mastery Academy</title>
+  <style>
+    :root{--bg:#0b1320;--card:#121c2b;--text:#f5fbff;--muted:#b7c7d9;--border:#243550;--brand:#00e5ff;--brand2:#4f46e5}
+    *{box-sizing:border-box} html,body{margin:0} body{font-family:system-ui,Segoe UI,Arial;background:var(--bg);color:var(--text)}
+    .container{max-width:1120px;margin:0 auto;padding:24px}
+    header{position:sticky;top:0;background:#0b1320f2;border-bottom:1px solid var(--border)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .links{display:flex;gap:16px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border:0;cursor:pointer}
+    .grid{display:grid;grid-template-columns:2fr 1fr;gap:16px} @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    .panel{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+    .pad{padding:14px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <strong>AI MASTERY ACADEMY</strong>
+      <nav class="links">
+        <a href="index.html#courses">Courses</a>
+        <a href="index.html#pricing">Pricing</a>
+        <a href="index.html#faq">FAQ</a>
+        <a href="dashboard.html" aria-current="page">Dashboard</a>
+      </nav>
+      <a href="index.html#courses" class="btn">Start Learning</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 style="margin:10px 0 14px">Your Dashboard</h1>
+    <div class="grid">
+      <section class="panel pad">
+        <h2>Live Updates</h2>
+        <div id="live-updates" aria-live="polite"></div>
+      </section>
+      <aside class="panel pad">
+        <h3>Shortcuts</h3>
+        <ul>
+          <li><a href="course.html?id=beginners">AI for Beginners</a></li>
+          <li><a href="course.html?id=genai">GenAI Mastery</a></li>
+          <li><a href="course.html?id=business">AI for Business</a></li>
+        </ul>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container" style="color:var(--muted);padding:20px 0;border-top:1px solid var(--border)">
+      © <span id="year"></span> AI Mastery Academy
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+  <script src="assets/live-updates.js"></script>
+  <script src="assets/coach.js"></script>
+</body>
+</html>
