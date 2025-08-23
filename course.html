@@ -17,6 +17,7 @@
     .foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:18px 0}
     .foot a{color:var(--muted);text-decoration:underline}
   </style>
+  <!-- INSERT CRISP.WIDGET CODE HERE -->
 </head>
 <body>
   <div class="container hero">
@@ -155,6 +156,10 @@
         <p>Free intro lessons. Upgrade anytime.</p>
         <button class="btn">Create free account</button>
       </section>
+      <section class="panel pad">
+        <h3>Live Updates</h3>
+        <div id="live-updates" aria-live="polite"></div>
+      </section>
     </aside>
   </div>
 
@@ -182,5 +187,7 @@
     document.getElementById('vidsrc').src=c.video; document.getElementById('audsrc').src=c.audio; document.getElementById('player').load();
     document.getElementById('check').addEventListener('click',()=>{let score=0; const a=document.querySelector('input[name="q1"]:checked')?.value; if(a==='a') score++; document.getElementById('result').textContent='Score: '+score+'/1';});
   </script>
+  <script src="assets/live-updates.js"></script>
+  <script src="assets/coach.js"></script>
 </body>
 </html>

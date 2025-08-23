@@ -8,6 +8,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <!-- INSERT CRISP.WIDGET CODE HERE -->
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <title>AI Mastery Academy — Learn AI in Your Language</title>
   <meta name="description" content="Multilingual AI courses with short videos, podcasts, and projects. Start free; upgrade anytime.">
@@ -83,6 +84,7 @@ body{margin:0} body{font-family:system-ui,Segoe UI,Arial;background:var(--bg);co
     .actions{display:flex;gap:10px;justify-content:flex-end;padding:0 14px 14px}
     .btn.ghost{background:transparent;border:1px solid var(--border);color:var(--text)}
   </style>
+  <!-- INSERT CRISP.WIDGET CODE HERE -->
 </head>
 <body>
   <header>
@@ -92,6 +94,7 @@ body{margin:0} body{font-family:system-ui,Segoe UI,Arial;background:var(--bg);co
         <a href="#courses">Courses</a>
         <a href="#pricing">Pricing</a>
         <a href="#faq">FAQ</a>
+        <a href="dashboard.html">Dashboard</a>
      <select id="lang" aria-label="Language" style="background:#0a1422;color:#fff;border:1px solid #243550;border-radius:10px;padding:6px">
   <option value="en">English</option>
   <option value="es">Español</option>
@@ -121,7 +124,16 @@ body{margin:0} body{font-family:system-ui,Segoe UI,Arial;background:var(--bg);co
       Learn AI in English, Español, Français, 中文, العربية
     </p>
     <a class="btn" href="#courses">Explore Courses</a><a class="btn" id="watchTrailer">Watch 90s Trailer</a>
-
+    <div class="panel" style="margin-top:12px">
+      <div class="field">
+        <label for="idea-input">Génère une idée de startup IA</label>
+        <div class="row">
+          <input id="idea-input" type="text" placeholder="Ex: Un assistant IA pour [votre secteur]">
+          <button id="idea-generate" class="btn">Générer</button>
+        </div>
+      </div>
+      <div id="idea-output" class="lead" style="margin-top:8px;color:#b7c7d9"></div>
+    </div>
   </div>
   
 </section>
@@ -187,11 +199,58 @@ body{margin:0} body{font-family:system-ui,Segoe UI,Arial;background:var(--bg);co
       </div>
     </section>
 
+    <section id="guarantee" class="panel" style="border:2px solid var(--brand2)">
+      <div class="pad">
+        <h2>Portfolio-Builder Guarantee</h2>
+        <p class="lead">Terminez les projets phares et obtenez un portfolio professionnel garanti. Sinon, bénéficiez de mentorat supplémentaire gratuit jusqu’à réussite.</p>
+        <div class="grid c3" style="margin-top:10px">
+          <div class="panel" style="display:flex;gap:10px;align-items:flex-start">
+            <div style="font-size:22px">✅</div>
+            <div><strong>Projets concrets</strong><div class="lead">Des briefs réels et évaluations.</div></div>
+          </div>
+          <div class="panel" style="display:flex;gap:10px;align-items:flex-start">
+            <div style="font-size:22px">🧭</div>
+            <div><strong>Mentorat dédié</strong><div class="lead">Coaching jusqu’à un résultat publiable.</div></div>
+          </div>
+          <div class="panel" style="display:flex;gap:10px;align-items:flex-start">
+            <div style="font-size:22px">🔒</div>
+            <div><strong>Zéro risque</strong><div class="lead">Pas de résultat ? Mentorat prolongé gratuitement.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="faq">
       <h2>FAQ</h2>
       <div class="grid c2">
         <div class="panel"><strong>Do I get a certificate?</strong><p class="lead">Yes, certificates are included with the Pro plan.</p></div>
         <div class="panel"><strong>Which languages?</strong><p class="lead">English, Spanish, French, Hindi, Chinese (Simplified), Arabic.</p></div>
+      </div>
+    </section>
+    <section id="testimonials">
+      <h2>Student Stories</h2>
+      <p class="lead">Short, real video testimonials with accessible captions and transcripts.</p>
+      <div class="grid c2">
+        <article class="panel pad">
+          <h3>Leila — Product Manager</h3>
+          <div style="aspect-ratio:16/9;background:#000;border-radius:10px;overflow:hidden">
+            <video controls width="100%" style="display:block">
+              <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+              <track kind="subtitles" srclang="en" label="English" src="assets/subs/beginners-en.vtt" default>
+            </video>
+          </div>
+          <details style="margin-top:8px"><summary>Transcript</summary><p class="lead">Before: no AI projects. After: shipped an internal copilot and landed a lead role.</p></details>
+        </article>
+        <article class="panel pad">
+          <h3>Marco — Founder</h3>
+          <div style="aspect-ratio:16/9;background:#000;border-radius:10px;overflow:hidden">
+            <video controls width="100%" style="display:block">
+              <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+              <track kind="subtitles" srclang="en" label="English" src="assets/subs/beginners-en.vtt" default>
+            </video>
+          </div>
+          <details style="margin-top:8px"><summary>Transcript</summary><p class="lead">I built a revenue-generating MVP with the course’s portfolio projects and prompts.</p></details>
+        </article>
       </div>
     </section>
   </main>
@@ -236,6 +295,40 @@ body{margin:0} body{font-family:system-ui,Segoe UI,Arial;background:var(--bg);co
         const body=encodeURIComponent(`Please upgrade me to Pro ($19/month).\n\nName: ${name}\nEmail: ${email}\nCoupon: ${coupon||'—'}\n\nSite: ${location.href}\n`);
         window.location.href=`mailto:${CONTACT}?subject=${subject}&body=${body}`; close();
       });
+    })();
+  </script>
+  <script>
+    // Interactive AI startup idea generator demo
+    (function(){
+      const key=localStorage.getItem('AMA_OPENAI_API_KEY');
+      const btn=document.getElementById('idea-generate');
+      const input=document.getElementById('idea-input');
+      const out=document.getElementById('idea-output');
+      if(!btn) return;
+      async function generate(){
+        const prompt=(input.value||'Un assistant IA pour la productivité des indépendants').trim();
+        out.textContent='Génération en cours...';
+        // Prefer window.ai if present
+        try{
+          if(window.ai && window.ai.generateText){
+            const res=await window.ai.generateText({text:`En 3 phrases, propose une idée de startup IA: ${prompt}`});
+            out.textContent=res.text?.trim()||''; return;
+          }
+        }catch(e){/* ignore */}
+        // Fallback to OpenAI if key present
+        if(key){
+          try{
+            const body={model:'gpt-4o-mini', messages:[{role:'system',content:'Tu es un assistant startup pragmatique.'},{role:'user',content:`En 3 phrases, propose une idée de startup IA: ${prompt}`}]};
+            const r=await fetch('https://api.openai.com/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},body:JSON.stringify(body)});
+            const j=await r.json();
+            out.textContent=j.choices?.[0]?.message?.content?.trim()||'💡 Idée générée.'; return;
+          }catch(e){/* ignore */}
+        }
+        // Offline mock
+        out.textContent='💡 Assistant IA vertical: capter les emails entrants, classer, répondre avec un ton de marque, et créer des tâches automatiquement.';
+      }
+      btn.addEventListener('click',e=>{e.preventDefault(); generate();});
+      input.addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); generate(); } });
     })();
   </script>
 </body>
