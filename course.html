@@ -155,6 +155,10 @@
         <p>Free intro lessons. Upgrade anytime.</p>
         <button class="btn">Create free account</button>
       </section>
+      <section class="panel pad">
+        <h3>Portfolio‑Builder Promise</h3>
+        <p class="lead" style="color:#b7c7d9">Complete the capstone projects and we’ll help you craft a job‑ready portfolio — with extra mentoring if needed.</p>
+      </section>
     </aside>
   </div>
 
@@ -165,22 +169,26 @@
     </div>
   </footer>
 
+  <!-- Customer support chatbot placeholder -->
+  <!-- INSERT CRISP.WIDGET CODE HERE -->
+
   <script>
-    document.getElementById('year').textContent=new Date().getFullYear();
-    const data={
-      beginners:{title:'AI for Beginners',tagline:'No-code intro with projects',desc:'Start from zero: concepts, prompting, and your first AI workflow.',obj:['Understand core AI concepts','Use prompts effectively','Ship a mini project'],video:'https://www.w3schools.com/html/mov_bbb.mp4',audio:'https://www.w3schools.com/html/horse.mp3'},
-      genai:{title:'ChatGPT & Generative AI Mastery',tagline:'Automate and create at scale',desc:'Master ChatGPT and top GenAI tools for content and workflows.',obj:['System + user prompts','Tooling & templates','Automation playbook'],video:'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',audio:'https://file-examples.com/storage/fe8bd73f2bdf70e5eb2c0a7/2017/11/file_example_MP3_700KB.mp3'},
-      business:{title:'AI for Business & Startups',tagline:'Use AI to scale ops',desc:'Automate processes, design copilots, and improve KPIs.',obj:['Identify ROI use cases','Design a copilot','Measure impact'],video:'https://www.w3schools.com/html/mov_bbb.mp4',audio:'https://file-examples.com/storage/fe8bd73f2bdf70e5eb2c0a7/2017/11/file_example_MP3_1MG.mp3'}
-    };
-    const id=new URLSearchParams(location.search).get('id')||'beginners';
-    const c=data[id]||data.beginners;
-    document.title=c.title+' — AI Mastery Academy';
-    document.getElementById('course-title').textContent=c.title;
-    document.getElementById('course-tagline').textContent=c.tagline;
-    document.getElementById('course-desc').textContent=c.desc;
-    const ul=document.getElementById('course-obj'); c.obj.forEach(x=>{const li=document.createElement('li');li.textContent=x;ul.appendChild(li);});
-    document.getElementById('vidsrc').src=c.video; document.getElementById('audsrc').src=c.audio; document.getElementById('player').load();
-    document.getElementById('check').addEventListener('click',()=>{let score=0; const a=document.querySelector('input[name="q1"]:checked')?.value; if(a==='a') score++; document.getElementById('result').textContent='Score: '+score+'/1';});
+  document.getElementById('year').textContent=new Date().getFullYear();
+  const data={
+    beginners:{title:'AI for Beginners',tagline:'No-code intro with projects',desc:'Start from zero: concepts, prompting, and your first AI workflow.',obj:['Understand core AI concepts','Use prompts effectively','Ship a mini project'],video:'https://www.w3schools.com/html/mov_bbb.mp4',audio:'https://www.w3schools.com/html/horse.mp3'},
+    genai:{title:'ChatGPT & Generative AI Mastery',tagline:'Automate and create at scale',desc:'Master ChatGPT and top GenAI tools for content and workflows.',obj:['System + user prompts','Tooling & templates','Automation playbook'],video:'https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4',audio:'https://file-examples.com/storage/fe8bd73f2bdf70e5eb2c0a7/2017/11/file_example_MP3_700KB.mp3'},
+    business:{title:'AI for Business & Startups',tagline:'Use AI to scale ops',desc:'Automate processes, design copilots, and improve KPIs.',obj:['Identify ROI use cases','Design a copilot','Measure impact'],video:'https://www.w3schools.com/html/mov_bbb.mp4',audio:'https://file-examples.com/storage/fe8bd73f2bdf70e5eb2c0a7/2017/11/file_example_MP3_1MG.mp3'}
+  };
+  const id=new URLSearchParams(location.search).get('id')||'beginners';
+  const c=data[id]||data.beginners;
+  document.title=c.title+' — AI Mastery Academy';
+  document.getElementById('course-title').textContent=c.title;
+  document.getElementById('course-tagline').textContent=c.tagline;
+  document.getElementById('course-desc').textContent=c.desc;
+  const ul=document.getElementById('course-obj'); c.obj.forEach(x=>{const li=document.createElement('li');li.textContent=x;ul.appendChild(li);});
+  document.getElementById('vidsrc').src=c.video; document.getElementById('audsrc').src=c.audio; document.getElementById('player').load();
+  document.getElementById('check').addEventListener('click',()=>{let score=0; const a=document.querySelector('input[name="q1"]:checked')?.value; if(a==='a') score++; document.getElementById('result').textContent='Score: '+score+'/1';});
   </script>
+  <script src="assets/ai-coach.js"></script>
 </body>
 </html>

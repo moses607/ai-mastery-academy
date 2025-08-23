@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Student Dashboard — AI Mastery Academy</title>
+  <style>
+    :root{--bg:#0b1320;--card:#121c2b;--text:#f5fbff;--muted:#b7c7d9;--border:#243550;--brand:#00e5ff;--brand2:#4f46e5}
+    *{box-sizing:border-box} html,body{margin:0} body{font-family:system-ui,Segoe UI,Arial;background:var(--bg);color:var(--text)}
+    .container{max-width:1120px;margin:0 auto;padding:24px}
+    header{position:sticky;top:0;background:#0b1320f2;border-bottom:1px solid var(--border)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .links{display:flex;gap:16px;flex-wrap:wrap}
+    .grid{display:grid;grid-template-columns:2fr 1fr;gap:16px} @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    .panel{background:var(--card);border:1px solid var(--border);border-radius:14px}
+    .pad{padding:14px}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:12px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border:0;cursor:pointer}
+    footer{border-top:1px solid var(--border);color:var(--muted);margin-top:20px}
+    .foot{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:18px 0}
+    .foot a{color:var(--muted);text-decoration:underline}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <strong>AI MASTERY ACADEMY</strong>
+      <nav class="links">
+        <a href="index.html">Home</a>
+        <a href="course.html?id=beginners">Courses</a>
+      </nav>
+      <a href="course.html?id=beginners" class="btn">Continue Learning</a>
+    </div>
+  </header>
+
+  <main class="container grid">
+    <section>
+      <div class="panel pad">
+        <h2>Welcome back</h2>
+        <p class="lead" style="color:var(--muted)">Here are your latest updates and next steps.</p>
+      </div>
+
+      <section class="panel pad">
+        <h3>Live Updates</h3>
+        <div id="live-updates" aria-live="polite"></div>
+      </section>
+
+      <section class="panel pad">
+        <h3>Your Progress</h3>
+        <p>Beginners Path — 2/8 lessons completed.</p>
+        <a class="btn" href="course.html?id=beginners">Resume Lesson</a>
+      </section>
+    </section>
+
+    <aside>
+      <section class="panel pad">
+        <h3>Next Milestone</h3>
+        <p>Create your first portfolio project with our step-by-step guide.</p>
+        <a class="btn" href="course.html?id=beginners#project">Open Guide</a>
+      </section>
+    </aside>
+  </main>
+
+  <footer>
+    <div class="container foot">
+      <div>© <span id="year"></span> AI Mastery Academy</div>
+      <div><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="cookies.html">Cookies</a></div>
+    </div>
+  </footer>
+
+  <!-- Customer support chatbot placeholder -->
+  <!-- INSERT CRISP.WIDGET CODE HERE -->
+
+  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+  <script src="assets/live-updates.js"></script>
+  <script src="assets/ai-coach.js"></script>
+</body>
+</html>
