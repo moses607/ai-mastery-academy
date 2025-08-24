@@ -125,6 +125,14 @@ body{margin:0} body{font-family:system-ui,Segoe UI,Arial;background:var(--bg);co
     </p>
     <a class="btn" href="#courses">Explore Courses</a><a class="btn" id="watchTrailer">Watch 90s Trailer</a>
 
+    <div id="idea-gen" class="panel" style="margin-top:12px">
+      <div class="row">
+        <input id="idea-input" type="text" placeholder="Generate an AI startup idea for…" aria-label="Your domain or problem">
+        <button class="btn" id="idea-btn">Generate</button>
+      </div>
+      <div id="idea-out" class="lead" style="margin-top:8px;color:#b7c7d9"></div>
+      <small style="color:#94a3b8">Uses window.ai or OpenAI API if configured.</small>
+    </div>
   </div>
   
 </section>
@@ -190,11 +198,41 @@ body{margin:0} body{font-family:system-ui,Segoe UI,Arial;background:var(--bg);co
       </div>
     </section>
 
+    <section id="guarantee" class="panel" style="margin-top:12px;padding:16px">
+      <h2>Portfolio‑Builder Promise</h2>
+      <p class="lead">Finish the program’s flagship projects and get a job‑ready portfolio — guaranteed. If your portfolio isn’t ready, we’ll coach you 1:1 until it is, at no extra cost.</p>
+      <div class="grid c3">
+        <div class="panel"><strong>🧭 Clear milestones</strong><p class="lead">Step‑by‑step briefs with rubrics.</p></div>
+        <div class="panel"><strong>🛠 Project reviews</strong><p class="lead">Actionable feedback from mentors.</p></div>
+        <div class="panel"><strong>🛡 Risk‑free</strong><p class="lead">Extra mentoring until you ship.</p></div>
+      </div>
+    </section>
+
     <section id="faq">
       <h2>FAQ</h2>
       <div class="grid c2">
         <div class="panel"><strong>Do I get a certificate?</strong><p class="lead">Yes, certificates are included with the Pro plan.</p></div>
         <div class="panel"><strong>Which languages?</strong><p class="lead">English, Spanish, French, Hindi, Chinese (Simplified), Arabic.</p></div>
+      </div>
+    </section>
+
+    <section id="testimonials">
+      <h2>Student stories</h2>
+      <p class="lead">Short videos from graduates. Text transcripts included.</p>
+      <div class="grid c2">
+        <div class="panel" style="padding:10px">
+          <div style="position:relative;padding-top:56.25%">
+            <iframe src="https://www.youtube.com/embed/YOUR_TESTIMONIAL_ID1?rel=0&modestbranding=1" title="Testimonial — Alex" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="position:absolute;inset:0;border:0;width:100%;height:100%"></iframe>
+          </div>
+          <details><summary>Transcript</summary><p>Before this course, I struggled to ship projects. The project reviews and mentoring helped me build two real apps and land interviews.</p></details>
+        </div>
+        <div class="panel" style="padding:10px">
+          <video controls width="100%" style="display:block;border-radius:12px">
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            <track kind="subtitles" srclang="en" label="English" src="assets/subs/beginners-en.vtt" default>
+          </video>
+          <details><summary>Transcript</summary><p>The mentorship helped me polish my capstone and create a standout portfolio. I went from hesitant to confident in a few weeks.</p></details>
+        </div>
       </div>
     </section>
   </main>
@@ -240,6 +278,43 @@ body{margin:0} body{font-family:system-ui,Segoe UI,Arial;background:var(--bg);co
         window.location.href=`mailto:${CONTACT}?subject=${subject}&body=${body}`; close();
       });
     })();
+  </script>
+
+  <!-- Customer support chatbot placeholder -->
+  <!-- INSERT CRISP.WIDGET CODE HERE -->
+
+  <script>
+  (function(){
+    async function callWindowAI(prompt){
+      try{
+        if(!window.ai||!window.ai.getCompletion) return null;
+        const r=await window.ai.getCompletion({messages:[{role:'system',content:'You are a concise startup ideation assistant.'},{role:'user',content:prompt}],modalities:{text:true},temperature:0.8});
+        return r?.message?.content?.[0]?.text||r?.text||'';
+      }catch(e){return null}
+    }
+    async function callOpenAI(prompt){
+      const key=window.AI_API_KEY||localStorage.getItem('OPENAI_API_KEY');
+      if(!key) return '';
+      try{
+        const r=await fetch('https://api.openai.com/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+key},body:JSON.stringify({model:'gpt-4o-mini',messages:[{role:'system',content:'You are a concise startup ideation assistant.'},{role:'user',content:prompt}],temperature:0.8})});
+        const j=await r.json();
+        return j?.choices?.[0]?.message?.content||'';
+      }catch(e){return ''}
+    }
+    const input=document.getElementById('idea-input');
+    const btn=document.getElementById('idea-btn');
+    const out=document.getElementById('idea-out');
+    if(btn){
+      btn.addEventListener('click', async ()=>{
+        const topic=(input?.value||'').trim()||'education';
+        if(out) out.textContent='Generating…';
+        let text=await callWindowAI('Generate a differentiated AI startup idea for: '+topic+'. Include a name and one‑sentence value prop.');
+        if(!text){ text=await callOpenAI('Generate a differentiated AI startup idea for: '+topic+'. Include a name and one‑sentence value prop.'); }
+        if(!text){ text='EduPilot — An AI copilot that auto‑builds interactive practice for any lesson, saving teachers hours per week.' }
+        if(out) out.textContent=text;
+      });
+    }
+  })();
   </script>
 </body>
 </html>
